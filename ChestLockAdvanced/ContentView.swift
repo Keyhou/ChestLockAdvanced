@@ -31,7 +31,12 @@ struct ContentView: View {
             }
             
             Button(action: {
-                self.authenticateWithFaceID()
+                if !self.isChestOpen {
+                    // Only authenticate with Face ID when opening the chest
+                    self.authenticateWithFaceID()
+                } else {
+                    self.isChestOpen.toggle()
+                }
             }) {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(isChestOpen ? Color.red : Color.green)
